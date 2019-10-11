@@ -1,36 +1,68 @@
 const rexExpEmail = /[\w\.-_]+@[\w]+\.[A-Za-z]{2,3}$/; 
-const rexExpPassword = /.{8,}$/
+const rexExpPassword = /.{8,}$/;
+const rexExpNameAndHobbi = /[\w,\.-_]{3,}$/;
+const rexExpHouse = /[12]$/;
 const inputEmail = document.getElementById("email");
 const inputPassword = document.getElementById("password");
-const inputLogin = document.getElementById("login");
+const formFirst = document.getElementById("formFirst");
+const formSecond = document.getElementById("formSecond");
+const inputName = document.getElementById("name");
+const inputHouse = document.getElementById("house");
+const inputHobbi = document.getElementById("hobbi");
 
-inputEmail.addEventListener("blur", ()  => {
-    const input = inputEmail.value;
-    if(!rexExpEmail.test(input)){
-        inputEmail.nextElementSibling.style.border="red 1px solid";
-    } 
-    inputEmail.addEventListener("keyup", ()  => {
-        const input = inputEmail.value;
-        if(!rexExpEmail.test(input)){
-            inputEmail.nextElementSibling.style.border="red 1px solid";
-        } else{
-            inputEmail.nextElementSibling.style.border="";
-        }
+//function for field validation
+function validField(selector, regExp, event="keyup"){
+    selector.addEventListener("blur", ()  => {
+        const value = selector.value;
+        if(!regExp.test(value)){
+            selector.nextElementSibling.style.border="red 1px solid";
+        } 
+        selector.addEventListener(event, ()  => {
+            const value = selector.value;
+            if(!regExp.test(value)){
+                selector.nextElementSibling.style.border="red 1px solid";         
+            } else{
+                selector.nextElementSibling.style.border="";
+            }
+        });
+        
     });
+    if(regExp.test(selector.value)){
+        return true;
+    }
+}
+
+//call function to assign handler
+validField(inputEmail, rexExpEmail);
+validField(inputPassword,rexExpPassword);
+
+formFirst.addEventListener("submit" ,() =>{
+   
+    //call the function to get the validation result
+    if(validField(inputEmail, rexExpEmail) === true && 
+        validField(inputPassword,rexExpPassword) === true){
+        formFirst.style.display="none";
+        formSecond.style.display="block";
+    } else {
+        alert("Please fill in all field")
+    }
+    event.preventDefault();
 });
 
-inputEmail.addEventListener("blur", ()  => {
-    const input = inputEmail.value;
-    if(!rexExpEmail.test(input)){
-        inputEmail.nextElementSibling.style.border="red 1px solid";
-    } 
-    inputEmail.addEventListener("keyup", ()  => {
-        const input = inputEmail.value;
-        if(!rexExpEmail.test(input)){
-            inputEmail.nextElementSibling.style.border="red 1px solid";
-        } else{
-            inputEmail.nextElementSibling.style.border="";
-        }
-    });
-});
+//call function to assign handler
+validField(inputName, rexExpNameAndHobbi);
+validField(inputHouse, rexExpHouse, "change");
+validField(inputHobbi, rexExpNameAndHobbi);
 
+formSecond.addEventListener("submit" ,() =>{
+   
+    //call the function to get the validation result
+    if(validField(inputName, rexExpNameAndHobbi) === true && 
+    validField(inputHouse, rexExpHouse, "change") === true &&
+    validField(inputHobbi, rexExpNameAndHobbi)){
+        alert("The form is filled perfectly");
+    }else {
+        alert("Please fill in all field")
+    }
+    event.preventDefault();
+});

@@ -20,9 +20,9 @@ function validField(selector, regExp, event="keyup"){
         selector.addEventListener(event, ()  => {
             const value = selector.value;
             if(!regExp.test(value)){
-                selector.nextElementSibling.style.border="red 1px solid";         
+                selector.nextElementSibling.classList.add("error");         
             } else{
-                selector.nextElementSibling.style.border="";
+                selector.nextElementSibling.classList.remove("error");   
             }
         });
         
@@ -41,8 +41,8 @@ formFirst.addEventListener("submit" ,() =>{
     //call the function to get the validation result
     if(validField(inputEmail, rexExpEmail) === true && 
         validField(inputPassword,rexExpPassword) === true){
-        formFirst.style.display="none";
-        formSecond.style.display="block";
+        formFirst.classList.add("formHide");
+        formSecond.classList.remove("formHide");
     } else {
         alert("Please fill in all field")
     }

@@ -118,13 +118,13 @@ select{
 [type=checkbox]:checked + .mycheckbox:before {
  	content: '\2715';
   	position: absolute;
-  	top: -7px;
-  	left: 1px;
+  	top: -11px;
+  	left: 0px;
   	font-size:2.2em;
   	color:#202020	;
 }
 
-.form2{
+.formHide{
 	display: none;
 }
 
@@ -138,4 +138,7 @@ select{
 input:-webkit-autofill {
 	-webkit-animation-name: autofill;
 	-webkit-animation-fill-mode: both;
+}
+.error{
+	border:red 1px solid;
 }

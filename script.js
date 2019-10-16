@@ -15,7 +15,7 @@ function validField(selector, regExp, event="keyup"){
     selector.addEventListener("blur", ()  => {
         const value = selector.value;
         if(!regExp.test(value)){
-            selector.nextElementSibling.style.border="red 1px solid";
+            selector.nextElementSibling.classList.add("error");  
         } 
         selector.addEventListener(event, ()  => {
             const value = selector.value;
@@ -35,6 +35,7 @@ function validField(selector, regExp, event="keyup"){
 //call function to assign handler
 validField(inputEmail, rexExpEmail);
 validField(inputPassword,rexExpPassword);
+let message = false;
 
 formFirst.addEventListener("submit" ,() =>{
    
@@ -43,8 +44,14 @@ formFirst.addEventListener("submit" ,() =>{
         validField(inputPassword,rexExpPassword) === true){
         formFirst.classList.add("formHide");
         formSecond.classList.remove("formHide");
+        message = false;
     } else {
-        alert("Please fill in all field")
+        if(!message){
+            message = document.createElement('label');
+            message.innerHTML = "Please fill in all fields correctly";
+            message.classList.add("errorLogin");
+            document.getElementById("login").after(message);
+        }
     }
     event.preventDefault();
 });
@@ -55,14 +62,18 @@ validField(inputHouse, rexExpHouse, "change");
 validField(inputHobbi, rexExpNameAndHobbi);
 
 formSecond.addEventListener("submit" ,() =>{
-   
+   event.preventDefault();
     //call the function to get the validation result
     if(validField(inputName, rexExpNameAndHobbi) === true && 
     validField(inputHouse, rexExpHouse, "change") === true &&
-    validField(inputHobbi, rexExpNameAndHobbi)){
+    validField(inputHobbi, rexExpNameAndHobbi) === true){
         alert("The form is filled perfectly");
     }else {
-        alert("Please fill in all field")
+        if(!message){
+            message = document.createElement('label');
+            message.innerHTML = "Please fill in all fields correctly";
+            message.classList.add("errorLogin");
+            document.getElementById("save").after(message);
+        }
     }
-    event.preventDefault();
 });

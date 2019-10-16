@@ -29,6 +29,9 @@ body{
 	background-position: center;
 	background-size: cover;
 }
+form{
+	width: 50%;
+}
 
 .right{
 	color:#d3bb89;
@@ -43,7 +46,6 @@ body{
 .button{
 	background-color: #c19a49;
 	padding: 15px;
-  	width: 450px;
   	margin-top: 70px;
 	cursor:pointer;
 }
@@ -96,7 +98,7 @@ select{
 	-webkit-appearance: none;
 }
  
- option {
+option {
   	background-color: #202020;
   	color:  #fef8eb;
 }
@@ -130,15 +132,23 @@ select{
 
 @-webkit-keyframes autofill {
 	to {
-	  color: #fef8eb;
-	  background: transparent;
+	  	color: #fef8eb;
+	 	background: transparent;
 	}
-  }
+}
    
+
 input:-webkit-autofill {
 	-webkit-animation-name: autofill;
 	-webkit-animation-fill-mode: both;
 }
 .error{
 	border:red 1px solid;
+}
+
+.errorLogin{
+	text-align: center;
+	color: red;
+	font-family: "Open Sans", sans-serif;
+	margin-top: 1em;
 }

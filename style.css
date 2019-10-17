@@ -1,6 +1,6 @@
 body{
 	margin: 0;
-	background-image: url(./fon.png);
+	background-image: url(./image/fon.png);
 	width: 100%;
   	height: 100%;
 }
@@ -24,7 +24,7 @@ body{
 }
 
 .left{
-	background-image: url(./logo.jpg) ;
+	background-image: url(./image//logo.jpg) ;
 	float:left;
 	background-position: center;
 	background-size: cover;
@@ -39,7 +39,7 @@ form{
 	display: flex;
   	align-items: center;
 	justify-content: center;
-	font-family: "Open Sans", sans-serif;
+	font-family: "Open Sans", Helvetica, sans-serif;
 }
 
 
@@ -51,7 +51,7 @@ form{
 
 label{
 	font-size:1.6em;
-	font-family: "EB Garamond", serif;
+	font-family: "EB Garamond", Helvetica,  serif;
 }
 hr{
 	margin-bottom:2em;
@@ -65,7 +65,7 @@ form h1{
 	text-align: center;
 	margin-bottom:10%;
 	font-weight: 400;
-	font-family: "Gameof";
+	font-family: "Gameof", Georgia;
 	text-transform:uppercase;
 }
 
@@ -119,7 +119,7 @@ option {
  	content: '\2715';
   	position: absolute;
   	top: -11px;
-  	left: 0px;
+  	left: 0;
   	font-size:2.2em;
   	color:#202020	;
 }

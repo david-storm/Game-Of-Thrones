@@ -37,7 +37,7 @@ validField(inputEmail, rexExpEmail);
 validField(inputPassword,rexExpPassword);
 let message = false;
 
-formFirst.addEventListener("submit" ,() =>{
+formFirst.addEventListener("submit" ,(event) =>{
    
     //call the function to get the validation result
     if(validField(inputEmail, rexExpEmail) === true && 
@@ -61,7 +61,7 @@ validField(inputName, rexExpNameAndHobbi);
 validField(inputHouse, rexExpHouse, "change");
 validField(inputHobbi, rexExpNameAndHobbi);
 
-formSecond.addEventListener("submit" ,() =>{
+formSecond.addEventListener("submit" ,(event) =>{
    event.preventDefault();
     //call the function to get the validation result
     if(validField(inputName, rexExpNameAndHobbi) === true && 

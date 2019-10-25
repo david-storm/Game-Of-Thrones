@@ -1,7 +1,7 @@
 const rexExpEmail = /[\w\.-_]+@[\w]+\.[A-Za-z]{2,3}$/; 
 const rexExpPassword = /.{8,}$/;
 const rexExpNameAndHobbi = /[\w,\.-_]{3,}$/;
-const rexExpHouse = /[12]$/;
+const rexExpHouse = /[1-9]$/;
 const inputEmail = document.getElementById("email");
 const inputPassword = document.getElementById("password");
 const formFirst = document.getElementById("formFirst");
@@ -64,9 +64,9 @@ validField(inputHobbi, rexExpNameAndHobbi);
 formSecond.addEventListener("submit" ,() =>{
    event.preventDefault();
     //call the function to get the validation result
-    if(validField(inputName, rexExpNameAndHobbi) === true && 
-    validField(inputHouse, rexExpHouse, "change") === true &&
-    validField(inputHobbi, rexExpNameAndHobbi) === true){
+    if(validField(inputName, rexExpNameAndHobbi) && 
+    validField(inputHouse, rexExpHouse, "change") &&
+    validField(inputHobbi, rexExpNameAndHobbi)){
         alert("The form is filled perfectly");
     }else {
         if(!message){
@@ -77,3 +77,16 @@ formSecond.addEventListener("submit" ,() =>{
         }
     }
 });
+
+$('.slaider').slick({
+        dots: false,
+        infinite: true,
+        arrows: false,
+        autoplay: false,
+        autoplaySpeed: 3000,
+        waitForAnimate: false,
+});
+
+
+
+$('#house').select2();

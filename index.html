@@ -5,11 +5,24 @@
     	<meta name="viewport" content="width=device-width, initial-scale=1.0">
     	<meta http-equiv="X-UA-Compatible" content="ie=edge">
     	<title>Game of thrones</title>
-		<link  href = "./style.css"  type = "text/css"  rel = "stylesheet" >
+		<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.css"/>
+		<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick-theme.css"/>
+		<link href="./style.css" type="text/css" rel="stylesheet">
+		<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/css/select2.min.css" rel="stylesheet" type="text/css"/>
 	</head>
 	<body>
 		<div class="left box">
-			
+			<div class="slaider">
+				<div><img src="/img/Lannister.png" class="slider__img"></div>
+				<div><img src="/img/Greyjoy.png" class="slider__img"></div>
+				<div><img src="/img/Arryn.png" class="slider__img"></div>
+				<div><img src="/img/Baratheon.png" class="slider__img"></div>
+				<div><img src="/img/Martell.png" class="slider__img"></div>
+				<div><img src="/img/Stark.png" class="slider__img"></div>
+				<div><img src="/img/Targaryen.png" class="slider__img"></div>
+				<div><img src="/img/Tully.png" class="slider__img"></div>
+				<div><img src="/img/Tyrell.png" class="slider__img"></div>
+			</div>	  
 		</div>
 		<div class="right box">
 
@@ -37,8 +50,15 @@
 				<label>Your Great House</label>
 				<select id="house">
 					<option value="">Select House</option>
-					<option value="1">House-1</option>
-					<option value="2">House-2</option>
+					<option value="1">Targaryen of King's Landing</option>
+					<option value="2">Stark of Winterfell</option>
+					<option value="3">Lannister of Casterly Rock</option>
+					<option value="4">Arryn of the Eyrie</option>
+					<option value="5">Tully of Riverrun</option>
+					<option value="6">Greyjoy of Pyke</option>
+					<option value="7">Baratheon of Storm's End</option>
+					<option value="8">Tyrell of Highgarden</option>
+					<option value="9">Martell of Sunspear</option>
 				</select>
 				<hr color="#d3bb89">
 				<label for="hobbi">Your preferences, hoddies, wishes, etc.</label>
@@ -47,6 +67,12 @@
 				<input type="submit" value="Save" id="save" class="button">
 			</form>
 		</div>
+		<!-- <script type="text/javascript" src="//cdn.jsdelivr.net/gh/kenwheeler/slick@1.8.1/slick/slick.min.js"></script> -->
+		<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+		<script type="text/javascript" src="/js/slick.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/js/select2.min.js"></script>
+		<script src="/js/script.js" ></script>
+
 	</body>
-	<script src="script.js" ></script>	
+		
 </html>

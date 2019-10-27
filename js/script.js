@@ -89,4 +89,9 @@ $('.slaider').slick({
 
 
 
-$('#house').select2();
+// $('#house').select2();
+$('#house').select2({
+    width: '100%',
+    // theme: 'bootstrap4',
+    minimumResultsForSearch: -1,
+});

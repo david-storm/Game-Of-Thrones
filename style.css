@@ -70,7 +70,7 @@ span{
 	text-transform:uppercase;
 }
 
-input,select, textarea{
+input, textarea{
 	width: 100%;
 	padding-top:1em;
 	padding-bottom:0.6em;
@@ -93,9 +93,6 @@ textarea{
 	resize:none;
 }
  
-select{
-	-webkit-appearance: none;
-}
  
 option {
   	background-color: #202020;
@@ -164,4 +161,33 @@ input:-webkit-autofill {
  height: 100vh;
  object-fit: contain;
 width: 100%;
+}
+
+#select2-house-container{
+	-webkit-appearance: none;
+	color:#fef8eb;
+	border:  none;
+	background:#202020;
+	font-size: 4em;
+	
+
+}
+#formSecond > span > span.selection > span{
+	border: none;
+}
+
+
+.select2-results{
+	color: #d3bb89;
+	font-size : 3em;
+	background: black;
+}
+#formSecond > span > span.selection > span:focus{
+	outline: none;
+}
+#formSecond > span > span.selection > span > span.select2-selection__arrow:focus{
+	outline: none;
+}
+#select2-house-results{
+	outline: none;
 }

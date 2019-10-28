@@ -1,193 +1,174 @@
-body{
+body {
 	margin: 0;
 	background-image: url(/img/fon.png);
 	width: 100%;
-  	height: 100%;
+	height: 100%;
 }
 
 @font-face {
-    font-family: "Gameof"; 
-		src: url("./fonts/GameofThrones.ttf") format('truetype');
+	font-family: "Gameof";
+	src: url("./fonts/GameofThrones.ttf") format('truetype');
 }
+
 @font-face {
 	font-family: "EB Garamond";
-	src:url('./fonts/EBGaramond-Regular.ttf');
+	src: url('./fonts/EBGaramond-Regular.ttf');
 }
-  
+
 @font-face {
 	font-family: "Open Sans";
-	src:url('./fonts/OpenSans-Regular.ttf');
+	src: url('./fonts/OpenSans-Regular.ttf');
 }
-.box{
+
+.box {
 	width: 50%;
 	height: 100vh;
 }
 
-.left{
+.left {
 	/* background-image: url(/img/logo.jpg) ; */
-	float:left;
+	float: left;
 	background-position: center;
 	background-size: cover;
 }
-form{
+
+form {
 	width: 60%;
 }
 
-.right{
-	color:#d3bb89;
+.right {
+	color: #d3bb89;
 	float: right;
 	display: flex;
-  	align-items: center;
+	align-items: center;
 	justify-content: center;
 	flex-direction: column;
 	font-family: "Open Sans", Helvetica, sans-serif;
 }
 
 
-.button{
+.button {
 	background-color: #c19a49;
-  	margin-top: 2em;
-	cursor:pointer;
+	margin-top: 2em;
+	cursor: pointer;
 }
 
-label{
-	font-size:1.6em;
-	font-family: "EB Garamond", Helvetica,  serif;
+label {
+	font-size: 1.6em;
+	font-family: "EB Garamond", Helvetica, serif;
 }
-hr{
-	margin-bottom:2em;
+
+hr {
+	margin-bottom: 2em;
 }
-span{
+
+span {
 	font-size: 0.7em;
-  	color: #fef8eb;
+	color: #fef8eb;
 }
 
- h1{
+h1 {
 	text-align: center;
-	margin-bottom:1.5em;
+	margin-bottom: 1.5em;
 	font-weight: 400;
 	font-family: "Gameof", Georgia;
-	text-transform:uppercase;
+	text-transform: uppercase;
 }
 
-input, textarea{
+input,
+textarea {
 	width: 100%;
-	padding-top:1em;
-	padding-bottom:0.6em;
+	padding-top: 1em;
+	padding-bottom: 0.6em;
 	background-color: unset;
- 	border: none;
-	display:block;
+	border: none;
+	display: block;
 	font-size: 1.4em;
 	outline: none;
-	color:#fef8eb;
+	color: #fef8eb;
 }
 
-p{
-	color:#fef8eb;
-	border-left:solid 2px #d3bb89;
-	padding-left:1em;
-	font-size:1em;
+p {
+	color: #fef8eb;
+	border-left: solid 2px #d3bb89;
+	padding-left: 1em;
+	font-size: 1em;
 }
- 
-textarea{
-	resize:none;
+
+textarea {
+	resize: none;
 }
- 
- 
+
+
 option {
-  	background-color: #202020;
-  	color:  #fef8eb;
+	background-color: #202020;
+	color: #fef8eb;
 }
 
 .checkbox {
-  	display: none;
+	display: none;
 }
+
 .mycheckbox {
-  	height: 1.5em;
-  	width: 1.5em;
-  	display: inline-block;
-  	position: relative;
-  	background-color:#d3bb89;
-  	border-radius:2px;
-  	padding:3px;
+	height: 1.5em;
+	width: 1.5em;
+	display: inline-block;
+	position: relative;
+	background-color: #d3bb89;
+	border-radius: 2px;
+	padding: 3px;
 }
 
 
-[type=checkbox]:checked + .mycheckbox:before {
- 	content: '\2715';
-  	position: absolute;
-  	top: -11px;
-  	left: 0;
-  	font-size:2.2em;
-  	color:#202020	;
+[type=checkbox]:checked+.mycheckbox:before {
+	content: '\2715';
+	position: absolute;
+	top: -11px;
+	left: 0;
+	font-size: 2.2em;
+	color: #202020;
 }
 
-.formHide{
+.formHide {
 	display: none;
 }
 
 @-webkit-keyframes autofill {
 	to {
-	  	color: #fef8eb;
-	 	background: transparent;
+		color: #fef8eb;
+		background: transparent;
 	}
 }
-   
+
 
 input:-webkit-autofill {
 	-webkit-animation-name: autofill;
 	-webkit-animation-fill-mode: both;
 }
-.error{
-	border:red 1px solid;
+
+.error {
+	border: red 1px solid;
 }
 
-.errorLogin{
+.errorLogin {
 	text-align: center;
 	color: red;
 	font-family: "Open Sans", sans-serif;
 	margin-top: 1em;
 }
+
 @media (max-height: 700px) {
-	body{
+	body {
 		font-size: 0.8em;
 	}
-  }
-.slaider{
+}
+
+.slaider {
 	/* height: 100vh; */
 }
 
-.slider__img{
- height: 100vh;
- object-fit: contain;
-width: 100%;
-}
-
-#select2-house-container{
-	-webkit-appearance: none;
-	color:#fef8eb;
-	border:  none;
-	background:#202020;
-	font-size: 4em;
-	
-
-}
-#formSecond > span > span.selection > span{
-	border: none;
-}
-
-
-.select2-results{
-	color: #d3bb89;
-	font-size : 3em;
-	background: black;
-}
-#formSecond > span > span.selection > span:focus{
-	outline: none;
-}
-#formSecond > span > span.selection > span > span.select2-selection__arrow:focus{
-	outline: none;
-}
-#select2-house-results{
-	outline: none;
+.slider__img {
+	height: 100vh;
+	object-fit: fill;	
+	width: 100%;
 }

@@ -1,23 +1,24 @@
 body {
 	margin: 0;
-	background-image: url(/img/fon.png);
+	background-image: url(../img/fon.png);
 	width: 100%;
 	height: 100%;
+	overflow-y: hidden;
 }
 
 @font-face {
 	font-family: "Gameof";
-	src: url("./fonts/GameofThrones.ttf") format('truetype');
+	src: url("../fonts/GameofThrones.ttf") format('truetype');
 }
 
 @font-face {
 	font-family: "EB Garamond";
-	src: url('./fonts/EBGaramond-Regular.ttf');
+	src: url('../fonts/EBGaramond-Regular.ttf');
 }
 
 @font-face {
 	font-family: "Open Sans";
-	src: url('./fonts/OpenSans-Regular.ttf');
+	src: url('../fonts/OpenSans-Regular.ttf');
 }
 
 .box {
@@ -26,7 +27,6 @@ body {
 }
 
 .left {
-	/* background-image: url(/img/logo.jpg) ; */
 	float: left;
 	background-position: center;
 	background-size: cover;
@@ -163,12 +163,8 @@ input:-webkit-autofill {
 	}
 }
 
-.slaider {
-	/* height: 100vh; */
-}
-
 .slider__img {
 	height: 100vh;
-	object-fit: fill;	
+	object-fit: contain;
 	width: 100%;
 }

@@ -64,7 +64,7 @@ formSecond.addEventListener("submit", (event) => {
     event.preventDefault();
     //call the function to get the validation result
     if (validField(inputName, rexExpNameAndHobbi) &&
-        validField(inputHouse, rexExpHouse, "change") &&
+        $(".current").html() != "Select House" &&
         validField(inputHobbi, rexExpNameAndHobbi)) {
         alert("The form is filled perfectly");
     } else {
@@ -102,7 +102,7 @@ const allHouses = {
 };
 
 $('#house').change(() => {
-        let house = $(".current").html();
+    let house = $(".current").html();
     if (house === "Select House") {
         $('.slaider').slick('slickPlay');
         $('#house').next().next().addClass("error");

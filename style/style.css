@@ -146,11 +146,11 @@ input:-webkit-autofill {
 	-webkit-animation-fill-mode: both;
 }
 
-.error {
+.wrongField {
 	border: red 1px solid;
 }
 
-.errorLogin {
+.wrongSubmit {
 	text-align: center;
 	color: red;
 	font-family: "Open Sans", sans-serif;

@@ -15,14 +15,15 @@ function validField(selector, regExp, event = "keyup") {
     selector.addEventListener("blur", () => {
         const value = selector.value;
         if (!regExp.test(value)) {
-            selector.nextElementSibling.classList.add("error");
+            selector.nextElementSibling.classList.add("wrongField");
         }
         selector.addEventListener(event, () => {
             const value = selector.value;
             if (!regExp.test(value)) {
-                selector.nextElementSibling.classList.add("error");
+                selector.nextElementSibling.classList.add("wrongField");
             } else {
-                selector.nextElementSibling.classList.remove("error");
+                selector.nextElementSibling.classList.remove("wrongField");
+                deleteMessage();
             }
         });
 
@@ -49,7 +50,7 @@ formFirst.addEventListener("submit", (event) => {
         if (!message) {
             message = document.createElement('label');
             message.innerHTML = "Please fill in all fields correctly";
-            message.classList.add("errorLogin");
+            message.classList.add("wrongSubmit");
             document.getElementById("login").after(message);
         }
     }
@@ -71,7 +72,7 @@ formSecond.addEventListener("submit", (event) => {
         if (!message) {
             message = document.createElement('label');
             message.innerHTML = "Please fill in all fields correctly";
-            message.classList.add("errorLogin");
+            message.classList.add("wrongSubmit");
             document.getElementById("save").after(message);
         }
     }
@@ -105,11 +106,20 @@ $('#house').change(() => {
     let house = $(".current").html();
     if (house === "Select House") {
         $('.slaider').slick('slickPlay');
-        $('#house').next().next().addClass("error");
+        $('#house').next().next().addClass("wrongField");
     } else {
-        $('#house').next().next().removeClass("error");
+        $('#house').next().next().removeClass("wrongField");
         let index = allHouses[house];
         $('.slaider').slick('slickPause');
         $('.slaider').slick('slickGoTo', index);
+        deleteMessage();
     }
 });
+
+function deleteMessage() {
+    if($(".wrongSubmit")){
+        $(".wrongSubmit").remove();
+        message= false;
+    }
+}
+

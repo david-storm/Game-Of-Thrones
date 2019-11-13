@@ -1,7 +1,38 @@
 <?php
 
-if($_POST){
-    
+function aut_user($email, $password){
+   
+    $fileName = $email . '.json'; 
+    $fullName = 'db_users/' . $fileName; 
+    if(in_array($fileName, scandir('db_users'))){
+        $handle = fopen($fullName, 'r');
+        $passInDB = json_decode(fread($handle, filesize($fullName)))['password'];
+        if($passInDB == $password){
+            $result = array('user' => 1);
+        } else {
+           $result = array('user' => 0, 'message' => 'Wrong password');
+        }
+    } else {
+        
+        $handle = fopen($fullName, 'x');
+        $data = array('password' => $password);
+        $res = fwrite($handle, json_encode($data));
+        $result = array('user' => 2);
+    }
+    fclose($handle);
+    return $result;
+}
+
+if(isset($_POST)){
+    if(isset($_POST['submit'])){
+        if($_POST['submit'] == 'Sign Up'){
+            $email = $_POST['email'];
+            $password = $_POST['password'];
+            $res = aut_user($email, $password);
+                
+            
+        }
+    }
 }
 
 $house = array(

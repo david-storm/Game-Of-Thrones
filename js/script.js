@@ -3,83 +3,83 @@ const rexExpPassword = /.{8,}$/;
 const rexExpNameAndHobbi = /[\w,\.-_]{3,}$/;
 const inputEmail = document.getElementById("email");
 const inputPassword = document.getElementById("password");
-const formFirst = document.getElementById("formFirst");
-const formSecond = document.getElementById("formSecond");
-const inputName = document.getElementById("name");
-const inputHouse = document.getElementById("house");
-const inputHobbi = document.getElementById("hobbi");
+//const formFirst = document.getElementById("formFirst");
+//const formSecond = document.getElementById("formSecond");
+//const inputName = document.getElementById("name");
+//const inputHouse = document.getElementById("house");
+//const inputHobbi = document.getElementById("hobbi");
 
 
 //function for field validation
-function validField(selector, regExp, event = "keyup") {
-    selector.addEventListener("blur", () => {
-        const value = selector.value;
-        if (!regExp.test(value)) {
-            selector.nextElementSibling.classList.add("wrongField");
-        }
-        selector.addEventListener(event, () => {
-            const value = selector.value;
-            if (!regExp.test(value)) {
-                selector.nextElementSibling.classList.add("wrongField");
-            } else {
-                selector.nextElementSibling.classList.remove("wrongField");
-                deleteMessage();
-            }
-        });
-
-    });
-    if (regExp.test(selector.value)) {
-        return true;
-    }
-}
-
-//call function to assign handler
-validField(inputEmail, rexExpEmail);
-validField(inputPassword, rexExpPassword);
-let message = false;
-
-formFirst.addEventListener("submit", (event) => {
-
-    //call the function to get the validation result
-    if (validField(inputEmail, rexExpEmail) === true &&
-        validField(inputPassword, rexExpPassword) === true) {
-        formFirst.classList.add("formHide");
-        formSecond.classList.remove("formHide");
-        message = false;
-    } else {
-        if (!message) {
-            message = document.createElement('label');
-            message.innerHTML = "Please fill in all fields correctly";
-            message.classList.add("wrongSubmit");
-            document.getElementById("login").after(message);
-        }
-    }
-    event.preventDefault();
-});
-
-//call function to assign handler
-validField(inputName, rexExpNameAndHobbi);
-validField(inputHobbi, rexExpNameAndHobbi);
-
-formSecond.addEventListener("submit", (event) => {
-    event.preventDefault();
-    //call the function to get the validation result
-    if (validField(inputName, rexExpNameAndHobbi) &&
-        $(".current").html() != "Select House" &&
-        validField(inputHobbi, rexExpNameAndHobbi)) {
-        alert("The form is filled perfectly");
-    } else {
-        if (!message) {
-            message = document.createElement('label');
-            message.innerHTML = "Please fill in all fields correctly";
-            message.classList.add("wrongSubmit");
-            document.getElementById("save").after(message);
-        }
-    }
-});
+//function validField(selector, regExp, event = "keyup") {
+//    selector.addEventListener("blur", () => {
+//        const value = selector.value;
+//        if (!regExp.test(value)) {
+//            selector.nextElementSibling.classList.add("wrongField");
+//        }
+//        selector.addEventListener(event, () => {
+//            const value = selector.value;
+//            if (!regExp.test(value)) {
+//                selector.nextElementSibling.classList.add("wrongField");
+//            } else {
+//                selector.nextElementSibling.classList.remove("wrongField");
+//                deleteMessage();
+//            }
+//        });
+//
+//    });
+//    if (regExp.test(selector.value)) {
+//        return true;
+//    }
+//}
+//
+////call function to assign handler
+//validField(inputEmail, rexExpEmail);
+//validField(inputPassword, rexExpPassword);
+//let message = false;
+//
+//formFirst.addEventListener("submit", (event) => {
+//
+//    //call the function to get the validation result
+//    if (validField(inputEmail, rexExpEmail) === true &&
+//        validField(inputPassword, rexExpPassword) === true) {
+//        formFirst.classList.add("formHide");
+//        formSecond.classList.remove("formHide");
+//        message = false;
+//    } else {
+//        if (!message) {
+//            message = document.createElement('label');
+//            message.innerHTML = "Please fill in all fields correctly";
+//            message.classList.add("wrongSubmit");
+//            document.getElementById("login").after(message);
+//        }
+//    }
+//    event.preventDefault();
+//});
+//
+////call function to assign handler
+//validField(inputName, rexExpNameAndHobbi);
+//validField(inputHobbi, rexExpNameAndHobbi);
+//
+//formSecond.addEventListener("submit", (event) => {
+//    event.preventDefault();
+//    //call the function to get the validation result
+//    if (validField(inputName, rexExpNameAndHobbi) &&
+//        $(".current").html() != "Select House" &&
+//        validField(inputHobbi, rexExpNameAndHobbi)) {
+//        alert("The form is filled perfectly");
+//    } else {
+//        if (!message) {
+//            message = document.createElement('label');
+//            message.innerHTML = "Please fill in all fields correctly";
+//            message.classList.add("wrongSubmit");
+//            document.getElementById("save").after(message);
+//        }
+//    }
+//});
 
 $('.slaider').slick({
-    draggable: false,
+    draggable: true,
     dots: false,
     infinite: true,
     arrows: false,
@@ -101,25 +101,25 @@ const allHouses = {
     "Tully of Riverrun": 7,
     "Tyrell of Highgarden": 8
 };
-
-$('#house').change(() => {
-    let house = $(".current").html();
-    if (house === "Select House") {
-        $('.slaider').slick('slickPlay');
-        $('#house').next().next().addClass("wrongField");
-    } else {
-        $('#house').next().next().removeClass("wrongField");
-        let index = allHouses[house];
-        $('.slaider').slick('slickPause');
-        $('.slaider').slick('slickGoTo', index);
-        deleteMessage();
-    }
-});
-
-function deleteMessage() {
-    if($(".wrongSubmit")){
-        $(".wrongSubmit").remove();
-        message= false;
-    }
-}
+//
+//$('#house').change(() => {
+//    let house = $(".current").html();
+//    if (house === "Select House") {
+//        $('.slaider').slick('slickPlay');
+//        $('#house').next().next().addClass("wrongField");
+//    } else {
+//        $('#house').next().next().removeClass("wrongField");
+//        let index = allHouses[house];
+//        $('.slaider').slick('slickPause');
+//        $('.slaider').slick('slickGoTo', index);
+//        deleteMessage();
+//    }
+//});
+//
+//function deleteMessage() {
+//    if($(".wrongSubmit")){
+//        $(".wrongSubmit").remove();
+//        message= false;
+//    }
+//}
 

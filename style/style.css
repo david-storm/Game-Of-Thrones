@@ -147,7 +147,8 @@ input:-webkit-autofill {
 }
 
 .wrongField {
-	border: red 1px solid;
+	/*border: red 1px solid;*/
+        color:red;
 }
 
 .wrongSubmit {

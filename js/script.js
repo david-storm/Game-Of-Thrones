@@ -16,10 +16,10 @@ $('.slaider').slick({
 });
 
 const allHouses = {
-    "Lannister of Casterly Rock": 0,
-    "Greyjoy of Pyke": 1,
-    "Arryn of the Eyrie": 2,
-    "Baratheon of Storm's End": 3,
+    "Arryn of the Eyrie": 0,
+    "Baratheon of Storm's End": 1,
+    "Greyjoy of Pyke": 2,
+    "Lannister of Casterly Rock": 3,
     "Martell of Sunspear": 4,
     "Stark of Winterfell": 5,
     "Targaryen of King's Landing": 6,

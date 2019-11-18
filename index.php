@@ -1,6 +1,7 @@
 <?php
 session_start();
-
+// unset($_SESSION['current_user']);
+//  unset($_SESSION['form']);
 
 //if there is a submit, check what form it came from
 if (isset($_POST) && isset($_POST['submit'])) {
@@ -133,16 +134,15 @@ function saveUserData($data) {
     rewind($handle);
     fwrite($handle, json_encode($data));
 
-
     fclose($handle);
 }
 
 
 $house = array(
-    "Lannister of Casterly Rock",
-    "Greyjoy of Pyke",
     "Arryn of the Eyrie",
     "Baratheon of Storm's End",
+    "Greyjoy of Pyke",
+    "Lannister of Casterly Rock",
     "Martell of Sunspear",
     "Stark of Winterfell",
     "Targaryen of King's Landing",

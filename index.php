@@ -1,15 +1,15 @@
 <?php
 session_start();
-// unset($_SESSION['current_user']);
-//  unset($_SESSION['form']);
 
-//if there is a submit, check what form it came from
-if (isset($_POST) && isset($_POST['submit'])) {
+/* if there is a submit, check what form it came from */
+if (!empty($_POST['submit'])) {
     
     if ($_POST['submit'] == 'Sign Up') {
+        
         $result = loginOrRegUser();
-        if (isset($result['res']) && $result['res']) {
-            nextForm();
+        
+        if (!empty($result['res'])){
+            nextForm($result['res']);
         } else {
             $GLOBALS['message'] = $result['message'];
         }
@@ -26,9 +26,9 @@ if (isset($_POST) && isset($_POST['submit'])) {
     }
 }
 
-//form validation and authentication
+/* form validation and authentication */
 function loginOrRegUser() {
-    $result = array();
+    $result = [];
     
     $email = isset($_POST['email']) ? strval($_POST['email']) : '';
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -47,7 +47,7 @@ function loginOrRegUser() {
     return $result;
 }
 
-//Check if there is an email in the database and verify the password, or register a new user
+/* Check if there is an email in the database and verify the password, or register a new user */
 function auth_user($email, $password) {
 
     $fileName = $email . '.json';
@@ -57,26 +57,25 @@ function auth_user($email, $password) {
         $handle = fopen($fullName, 'r');
         $passInDB = json_decode(fread($handle, filesize($fullName)), TRUE)['password'];
         if ($passInDB == $password) {
-            $result = array('res' => 1);
+            $result['res'] = 1;
         } else {
-            $result = array('res' => 0, 'message' => array('password' => 'Wrong password'));
+            $result = ['res' => 0, 'message' => ['password' => 'Wrong password']];
         }
     } else {
 
         $handle = fopen($fullName, 'x');
-        $data = array('password' => $password);
-        fwrite($handle, json_encode($data));
-        $result = array('res' => 2);
+        fwrite($handle, json_encode(['password' => $password]));
+        $result['res'] = 2;
     }
     fclose($handle);
     return $result;
 }
 
 
-//form 2, data validation
+/* form 2, data validation */
 function validUserData() {
-    $message = array();
-    $validData = array();
+    $message = [];
+    $validData = [];
     if (isset($_POST['name']) && $name = $_POST['name']) {
         $validName = preg_match('/^[A-Z][a-z]{1,15}$/', $name);
         if ($validName) {
@@ -88,7 +87,7 @@ function validUserData() {
         $message['name'] = 'You did not fill in the field name.';
     }
 
-    if (isset($_POST['house']) && $house = intval($_POST['house'])) {
+    if ((isset($_POST['house']) && $house = intval($_POST['house'])) || isset($_SESSION['current_user']['house']) && $house = $_SESSION['current_user']['house']) {
         if ($house > 0 && $house < 10) {
             $validData['house'] = $house;
         } else {
@@ -98,7 +97,7 @@ function validUserData() {
         $message['house'] = 'You did not fill in the field house.';
     }
 
-    if (isset($_POST['hobbi']) && $hobbi = $_POST['hobbi']) {
+    if (isset($_POST['hobbi']) && $hobbi = strip_tags($_POST['hobbi'])) {
         $validHobbi = preg_match('/^.{3,}?\h.{3,}/', $hobbi);
         if ($validHobbi) {
             $validData['hobbi'] = $hobbi;
@@ -112,11 +111,10 @@ function validUserData() {
     if (empty($message)) {
         $validData['valid'] = TRUE;
         return $validData;
-    } else {
-        $validData['valid'] = FALSE;
-        $GLOBALS['message'] = $message;
-        return $validData;
     }
+    $validData['valid'] = FALSE;
+    $GLOBALS['message'] = $message;
+    return $validData;
 }
 
 function writeToSession($data) {
@@ -127,7 +125,6 @@ function writeToSession($data) {
 
 function saveUserData($data) {
     $fullName = 'db_users/' . $_SESSION['current_user']['email'] . '.json';
-    echo $fullName;
     $handle = fopen($fullName, 'r+');
     $data['password'] = json_decode(fread($handle, filesize($fullName)), TRUE)['password'];
     ftruncate($handle,0);
@@ -156,8 +153,14 @@ foreach ($imagesSlaider as $img) {
     $slaider .= '<div><img src="img/' . $img . '" class="slider__img"></div>';
 }
 
-function nextForm() {
+function nextForm($userLoad) {
     $_SESSION['form'] = 'second';
+    if($userLoad === 2){
+        return;
+    }
+    $handle = fopen('db_users/'.$_SESSION['current_user']['email'].'.json', 'r+');
+    $data = json_decode(fread($handle, filesize('db_users/'.$_SESSION['current_user']['email'].'.json')), TRUE);
+    writeToSession($data);
 }
 
 function viewsForm() {
@@ -173,51 +176,8 @@ function viewsForm() {
     $messageHouse = empty($GLOBALS['message']['house']) ? '' : $GLOBALS['message']['house'];
     $messageHobbi = empty($GLOBALS['message']['hobbi']) ? '' : $GLOBALS['message']['hobbi'];
 
-    $formFirst = '<form  id="formFirst" action="index.php" method="POST">
-            <label for="email">Enter your email</label>
-            <input type="email" name="email" id="email" placeholder="arya@westeros.com" value="' . $email . '">
-            <div class="wrongField">' . $messageEmail . '</div>
-            <hr color="#d3bb89">
-            <label for="password">Choose secure password<br><span>Must be least 8 characters</span></label>
-            <input type="password" name="password" placeholder="password" minlength="8" id="password">
-            <div class="wrongField">' . $messagePassword . '</div>
-            <hr color="#d3bb89">
-            <label >
-                <input type="checkbox" class="checkbox" name="remember" id="checkbox"><span class="mycheckbox"></span>
-                Remember me
-            </label>
-            <input type="submit" name="submit" id="login" value="Sign Up" class="button">
-        </form>';
-
-    $formSecond = '<form id="formSecond" action="index.php" method="POST">
-            <p>You\'ve successfully joined the game.<br>
-                Tell us more about yourself.</p>
-            <label for="name">Who are you?<br><span>Alpha-numeric username</span></label>
-            <input type="text" name="name" id="name" placeholder="arya" value="' . $name . '">
-                  <div class="wrongField">' . $messageName . '</div>
-            <hr color="#d3bb89">
-            <label for="house">Your Great House</label>
-            <select id="house" name="house" value="' . $house . '">
-		<option value="">Select House</option>
-		<option value="1">Targaryen of King\'s Landing</option>
-		<option value="2">Stark of Winterfell</option>
-		<option value="3">Lannister of Casterly Rock</option>
-		<option value="4">Arryn of the Eyrie</option>
-		<option value="5">Tully of Riverrun</option>
-		<option value="6">Greyjoy of Pyke</option>
-		<option value="7">Baratheon of Storm\'s End</option>
-		<option value="8">Tyrell of Highgarden</option>
-		<option value="9">Martell of Sunspear</option>
-            </select>
-             <div class="wrongField">' . $messageHouse . '</div>
-            <hr color="#d3bb89">
-            <label for="hobbi">Your preferences, hobbies, wishes, etc.</label>
-            <textarea id="hobbi" name="hobbi" rows="2" placeholder="I have a long TOKILL list...">' . $hobbi . '</textarea>
-             <div class="wrongField">' . $messageHobbi . '</div>
-            <hr color="#d3bb89">
-            <input type="submit" name="submit" value="Save" id="save" class="button">
-	</form>';
-
+    require'./templates/first_form.php';
+    require'./templates/second_form.php';
 
     if (empty($_SESSION['form'])) {
         return $formFirst;
@@ -228,5 +188,4 @@ function viewsForm() {
 }
 
 $form = viewsForm();
-
-require 'template.php';
+require './templates/page.php';

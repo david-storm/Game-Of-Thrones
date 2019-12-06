@@ -27,11 +27,11 @@ const allHouses = {
     "Tyrell of Highgarden": 8
 };
 
+
 if ($('#house')) {
     $('#house').niceSelect();
-
-    $('#house').change(() => {
-        let house = $(".current").html();
+    const changeSlaider = () => {
+         let house = $(".current").html();
         if (house === "Select House") {
             $('.slaider').slick('slickPlay');
         } else {
@@ -39,5 +39,17 @@ if ($('#house')) {
             $('.slaider').slick('slickPause');
             $('.slaider').slick('slickGoTo', index);
         }
-    });
+    };
+    $('#house').change(changeSlaider);
+    
+    let idHouse = $('#house').attr('value');
+    if (idHouse) {
+        idHouse--;
+        for (house in allHouses) {
+            if(allHouses[house] == idHouse){
+                $(".current").html(house);
+            }
+        }
+        changeSlaider();
+    }
 }

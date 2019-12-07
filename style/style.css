@@ -1,147 +1,147 @@
 body {
-	margin: 0;
-	background-image: url(../img/fon.png);
-	width: 100%;
-	height: 100%;
-	overflow-y: hidden;
+    margin: 0;
+    background-image: url(../img/fon.png);
+    width: 100%;
+    height: 100%;
+    overflow-y: hidden;
 }
 
 @font-face {
-	font-family: "Gameof";
-	src: url("../fonts/GameofThrones.ttf") format('truetype');
+    font-family: "Gameof";
+    src: url("../fonts/GameofThrones.ttf") format('truetype');
 }
 
 @font-face {
-	font-family: "EB Garamond";
-	src: url('../fonts/EBGaramond-Regular.ttf');
+    font-family: "EB Garamond";
+    src: url('../fonts/EBGaramond-Regular.ttf');
 }
 
 @font-face {
-	font-family: "Open Sans";
-	src: url('../fonts/OpenSans-Regular.ttf');
+    font-family: "Open Sans";
+    src: url('../fonts/OpenSans-Regular.ttf');
 }
 
 .box {
-	width: 50%;
-	height: 100vh;
+    width: 50%;
+    height: 100vh;
 }
 
 .left {
-	float: left;
-	background-position: center;
-	background-size: cover;
+    float: left;
+    background-position: center;
+    background-size: cover;
 }
 
 form {
-	width: 60%;
+    width: 60%;
 }
 
 .right {
-	color: #d3bb89;
-	float: right;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	flex-direction: column;
-	font-family: "Open Sans", Helvetica, sans-serif;
+    color: #d3bb89;
+    float: right;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-family: "Open Sans", Helvetica, sans-serif;
 }
 
 
 .button {
-	background-color: #c19a49;
-	margin-top: 2em;
-	cursor: pointer;
+    background-color: #c19a49;
+    margin-top: 2em;
+    cursor: pointer;
 }
 
 label {
-	font-size: 1.6em;
-	font-family: "EB Garamond", Helvetica, serif;
+    font-size: 1.6em;
+    font-family: "EB Garamond", Helvetica, serif;
 }
 
 hr {
-	margin-bottom: 2em;
+    margin-bottom: 2em;
 }
 
 span {
-	font-size: 0.7em;
-	color: #fef8eb;
+    font-size: 0.7em;
+    color: #fef8eb;
 }
 
 h1 {
-	text-align: center;
-	margin-bottom: 1.5em;
-	font-weight: 400;
-	font-family: "Gameof", Georgia;
-	text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 1.5em;
+    font-weight: 400;
+    font-family: "Gameof", Georgia;
+    text-transform: uppercase;
 }
 
 input,
 textarea {
-	width: 100%;
-	padding-top: 1em;
-	padding-bottom: 0.6em;
-	background-color: unset;
-	border: none;
-	display: block;
-	font-size: 1.4em;
-	outline: none;
-	color: #fef8eb;
+    width: 100%;
+    padding-top: 1em;
+    padding-bottom: 0.6em;
+    background-color: unset;
+    border: none;
+    display: block;
+    font-size: 1.4em;
+    outline: none;
+    color: #fef8eb;
 }
 
 p {
-	color: #fef8eb;
-	border-left: solid 2px #d3bb89;
-	padding-left: 1em;
-	font-size: 1em;
+    color: #fef8eb;
+    border-left: solid 2px #d3bb89;
+    padding-left: 1em;
+    font-size: 1em;
 }
 
 textarea {
-	resize: none;
+    resize: none;
 }
 
 
 option {
-	background-color: #202020;
-	color: #fef8eb;
+    background-color: #202020;
+    color: #fef8eb;
 }
 
 .checkbox {
-	display: none;
+    display: none;
 }
 
 .mycheckbox {
-	height: 1.5em;
-	width: 1.5em;
-	display: inline-block;
-	position: relative;
-	background-color: #d3bb89;
-	border-radius: 2px;
-	padding: 3px;
+    height: 1.5em;
+    width: 1.5em;
+    display: inline-block;
+    position: relative;
+    background-color: #d3bb89;
+    border-radius: 2px;
+    padding: 3px;
 }
 
 
 [type=checkbox]:checked+.mycheckbox:before {
-	content: '\2715';
-	position: absolute;
-	top: -11px;
-	left: 0;
-	font-size: 2.2em;
-	color: #202020;
+    content: '\2715';
+    position: absolute;
+    top: -11px;
+    left: 0;
+    font-size: 2.2em;
+    color: #202020;
 }
 
 
 
 @-webkit-keyframes autofill {
-	to {
-		color: #fef8eb;
-		background: transparent;
-	}
+    to {
+        color: #fef8eb;
+        background: transparent;
+    }
 }
 
 
 input:-webkit-autofill {
-	-webkit-animation-name: autofill;
-	-webkit-animation-fill-mode: both;
+    -webkit-animation-name: autofill;
+    -webkit-animation-fill-mode: both;
 }
 
 .wrongField {
@@ -151,13 +151,23 @@ input:-webkit-autofill {
 
 
 @media (max-height: 700px) {
-	body {
-		font-size: 0.8em;
-	}
+    body {
+        font-size: 0.8em;
+    }
 }
 
 .slider__img {
-	height: 100vh;
-	object-fit: contain;
-	width: 100%;
+    height: 100vh;
+    object-fit: contain;
+    width: 100%;
+}
+
+#logout{
+    width: 100%;
+    height: 50%;
+    padding: 0 2px;
+    color: #202020;
+    margin: 10px 0;
+    font-family: Gameof;
+    background: #d3bb89;
 }

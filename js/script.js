@@ -31,7 +31,7 @@ const allHouses = {
 if ($('#house')) {
     $('#house').niceSelect();
     const changeSlaider = () => {
-         let house = $(".current").html();
+        let house = $(".current").html();
         if (house === "Select House") {
             $('.slaider').slick('slickPlay');
         } else {
@@ -41,15 +41,33 @@ if ($('#house')) {
         }
     };
     $('#house').change(changeSlaider);
-    
+
     let idHouse = $('#house').attr('value');
     if (idHouse) {
         idHouse--;
         for (house in allHouses) {
-            if(allHouses[house] == idHouse){
+            if (allHouses[house] == idHouse) {
                 $(".current").html(house);
             }
         }
         changeSlaider();
     }
+}
+
+if ($('#formSecond')) {
+    $('#formSecond').submit(event => {
+        event.preventDefault();
+        $.ajax({
+            method: "POST",
+            url: "index.php",
+            data: {house: $('#house').val(), name: $('#name').val(), hobbi: $('#hobbi').val(), submit: $('#save').val()}
+        })
+                .done(jsonMessages => {
+                    $('.wrongField').html('');
+                    let messages = JSON.parse(jsonMessages);
+                    for (index in messages) {
+                        $(`#${index}+.wrongField`).html(messages[index]);
+                    }
+                });
+    });
 }

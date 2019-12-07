@@ -15,14 +15,16 @@ if (!empty($_POST['submit'])) {
         }
     }
     if ($_POST['submit'] == 'Save') {
-        $data = validUserData();
-        writeToSession($data);
-        if ($data['valid']) {
-            unset($data['valid']);
-            saveUserData($data);
-            unset($_SESSION['current_user']);
-            unset($_SESSION['form']);
-        }
+        $result = validUserData();
+        writeToSession($result['data']);
+        saveUserData($result['data']);  
+        echo json_encode($result['message']);
+        return;
+    }
+    
+    if ($_POST['submit'] == 'Logout') {
+        unset($_SESSION['current_user']);
+        unset($_SESSION['form']);
     }
 }
 
@@ -75,11 +77,11 @@ function auth_user($email, $password) {
 /* form 2, data validation */
 function validUserData() {
     $message = [];
-    $validData = [];
+    $data = []; 
     if (isset($_POST['name']) && $name = $_POST['name']) {
         $validName = preg_match('/^[A-Z][a-z]{1,15}$/', $name);
         if ($validName) {
-            $validData['name'] = $name;
+            $data['name'] = $name;
         } else {
             $message['name'] = 'Your name must begin with a capital letter, from 2 to 16 letter long, must not contain special characters and spaces.';
         }
@@ -89,7 +91,7 @@ function validUserData() {
 
     if ((isset($_POST['house']) && $house = intval($_POST['house'])) || isset($_SESSION['current_user']['house']) && $house = $_SESSION['current_user']['house']) {
         if ($house > 0 && $house < 10) {
-            $validData['house'] = $house;
+            $data['house'] = $house;
         } else {
             $message['house'] = 'You must choose one of the listed houses .';
         }
@@ -100,21 +102,15 @@ function validUserData() {
     if (isset($_POST['hobbi']) && $hobbi = strip_tags($_POST['hobbi'])) {
         $validHobbi = preg_match('/^.{3,}?\h.{3,}/', $hobbi);
         if ($validHobbi) {
-            $validData['hobbi'] = $hobbi;
+            $data['hobbi'] = $hobbi;
         } else {
             $message['hobbi'] = 'You must write at least 2 hobbies, each hobia must be longer than 2 characters.';
         }
     } else {
         $message['hobbi'] = 'You did not fill in the field hobbi.';
     }
-
-    if (empty($message)) {
-        $validData['valid'] = TRUE;
-        return $validData;
-    }
-    $validData['valid'] = FALSE;
-    $GLOBALS['message'] = $message;
-    return $validData;
+    
+    return ['data' => $data, 'message' => $message];
 }
 
 function writeToSession($data) {
@@ -124,6 +120,9 @@ function writeToSession($data) {
 }
 
 function saveUserData($data) {
+    if(empty($data)){
+        return;
+    }
     $fullName = 'db_users/' . $_SESSION['current_user']['email'] . '.json';
     $handle = fopen($fullName, 'r+');
     $data['password'] = json_decode(fread($handle, filesize($fullName)), TRUE)['password'];
@@ -172,9 +171,7 @@ function viewsForm() {
 
     $messageEmail = empty($GLOBALS['message']['email']) ? '' : $GLOBALS['message']['email'];
     $messagePassword = empty($GLOBALS['message']['password']) ? '' : $GLOBALS['message']['password'];
-    $messageName = empty($GLOBALS['message']['name']) ? '' : $GLOBALS['message']['name'];
-    $messageHouse = empty($GLOBALS['message']['house']) ? '' : $GLOBALS['message']['house'];
-    $messageHobbi = empty($GLOBALS['message']['hobbi']) ? '' : $GLOBALS['message']['hobbi'];
+
 
     require'./templates/first_form.php';
     require'./templates/second_form.php';

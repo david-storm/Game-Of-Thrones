@@ -5,7 +5,7 @@ $formSecond = '<form id="formSecond" action="index.php" method="POST">
                 Tell us more about yourself.</p>
             <label for="name">Who are you?<br><span>Alpha-numeric username</span></label>
             <input type="text" name="name" id="name" placeholder="arya" value="' . $name . '">
-                  <div class="wrongField">' . $messageName . '</div>
+            <div class="wrongField"></div>
             <hr color="#d3bb89">
             <label for="house">Your Great House</label>
             <select id="house" name="house" value="' . $house . '">
@@ -20,11 +20,14 @@ $formSecond = '<form id="formSecond" action="index.php" method="POST">
 		<option value="8">Tully of Riverrun</option>
 		<option value="9">Tyrell of Highgarden</option>
             </select>
-             <div class="wrongField">' . $messageHouse . '</div>
+            <div class="wrongField"></div>
             <hr color="#d3bb89">
             <label for="hobbi">Your preferences, hobbies, wishes, etc.</label>
             <textarea id="hobbi" name="hobbi" rows="2" placeholder="I have a long TOKILL list...">' . $hobbi . '</textarea>
-             <div class="wrongField">' . $messageHobbi . '</div>
+            <div class="wrongField"></div>
             <hr color="#d3bb89">
             <input type="submit" name="submit" value="Save" id="save" class="button">
-	</form>';
+	</form>
+        <form action="index.php" method="POST">
+             <input type="submit" name="submit" value="Logout" id="logout" class="button">
+        </form>';

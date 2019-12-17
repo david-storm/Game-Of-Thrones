@@ -66,7 +66,11 @@ if ($('#formSecond')) {
                     $('.wrongField').html('');
                     let messages = JSON.parse(jsonMessages);
                     for (index in messages) {
+                        console.log(messages);
                         $(`#${index}+.wrongField`).html(messages[index]);
+                        if(index == 'res'){
+                            $('h1').append(`<p>${messages[index]}</p>`);
+                        }
                     }
                 });
     });

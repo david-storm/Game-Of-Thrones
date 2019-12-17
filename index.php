@@ -18,6 +18,9 @@ if (!empty($_POST['submit'])) {
         $result = validUserData();
         writeToSession($result['data']);
         saveUserData($result['data']);  
+        if(empty($result['message'])){
+            $result['message']['res'] = 'Data save :)';
+        }
         echo json_encode($result['message']);
         return;
     }
@@ -129,7 +132,6 @@ function saveUserData($data) {
     ftruncate($handle,0);
     rewind($handle);
     fwrite($handle, json_encode($data));
-
     fclose($handle);
 }
 

@@ -56,9 +56,9 @@ function loginOrRegUser() {
 function auth_user($email, $password) {
 
     $fileName = $email . '.json';
-    $fullName = 'db_users/' . $fileName;
+    $fullName = '../db_users/' . $fileName;
     
-    if (in_array($fileName, scandir('db_users'))) {
+    if (in_array($fileName, scandir('../db_users'))) {
         $handle = fopen($fullName, 'r');
         $passInDB = json_decode(fread($handle, filesize($fullName)), TRUE)['password'];
         if ($passInDB == $password) {
@@ -126,7 +126,7 @@ function saveUserData($data) {
     if(empty($data)){
         return;
     }
-    $fullName = 'db_users/' . $_SESSION['current_user']['email'] . '.json';
+    $fullName = '../db_users/' . $_SESSION['current_user']['email'] . '.json';
     $handle = fopen($fullName, 'r+');
     $data['password'] = json_decode(fread($handle, filesize($fullName)), TRUE)['password'];
     ftruncate($handle,0);
@@ -159,7 +159,7 @@ function nextForm($userLoad) {
     if($userLoad === 2){
         return;
     }
-    $handle = fopen('db_users/'.$_SESSION['current_user']['email'].'.json', 'r+');
+    $handle = fopen('../db_users/'.$_SESSION['current_user']['email'].'.json', 'r+');
     $data = json_decode(fread($handle, filesize('db_users/'.$_SESSION['current_user']['email'].'.json')), TRUE);
     writeToSession($data);
 }
